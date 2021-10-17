@@ -5,11 +5,12 @@ import comCOV.DB.Features;
 import java.util.Scanner;
 
 public class COV19_text {
-    static Scanner sc =new Scanner(System.in);
-   static Features features=new Features();
+    static Scanner sc = new Scanner(System.in);
+    static Features features = new Features();
+
     public static void main(String[] args) {
 
-        COV19_text cov19_text=new COV19_text();
+        COV19_text cov19_text = new COV19_text();
         System.out.println("欢迎使用核酸查询系统");
         int print1;
         boolean Bel = true;
@@ -26,6 +27,7 @@ public class COV19_text {
                     cov19_text.userselect();
                     break;
                 case 3:
+                    cov19_text.Adminster();
                     break;
                 case 4:
                     Bel = false;
@@ -37,15 +39,28 @@ public class COV19_text {
         } while (Bel);
 
     }
-    public  void userselect(){
-        features.longin();
+
+    public void userselect() { //普通用户
+        features.longin();  //普通用户登录验证
         System.out.print("你的信息:");
         features.UserSelect();
         System.out.println("查询完毕");
     }
-    public void Adminster(){  //管理员设置
-        System.out.println();
-        features.Admlongin();
+
+    public void Adminster() {  //管理员设置
+        System.out.println("管理员请登录");
+        features.Admlongin();//管理员登录验证
+        int print2;
+        boolean Bel = true;
+        do {
+            System.out.println("1:查看用户 2:修改用户 3:删除用户");
+            print2 = sc.nextInt();
+            switch (print2) {
+                case 1: features.AdministratorSelect();
+            }
+
+        } while (Bel);
+
     }
 
 }
