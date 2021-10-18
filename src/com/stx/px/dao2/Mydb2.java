@@ -1,6 +1,7 @@
 package com.stx.px.dao2;
 
 import com.stx.px.db.JDBC;
+import com.stx.px.db.UserModel;
 
 import java.sql.*;
 import java.util.Scanner;
@@ -106,6 +107,21 @@ public class Mydb2 {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public  UserModel login(){
+        UserModel user=new UserModel();
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");         //加载驱动
+            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:BEETLE", "system","Xxq123456");
+            Statement st=con.createStatement();
+            ResultSet rs = st.executeQuery("select*from px_stuinfo1 ");
+            while (rs.next()){
+                user.setStuid(rs.getInt("stuid"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
 }
